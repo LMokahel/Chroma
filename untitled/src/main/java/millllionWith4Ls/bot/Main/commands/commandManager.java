@@ -37,6 +37,9 @@ public class commandManager extends ListenerAdapter {
                 case "cyan" -> {
                     reply = "```yaml\n" + textOption + "\n```";
                 }
+                case "red" -> {
+                    reply = "```diff\n-" + textOption + "\n```";
+                }
                 default -> {
                     reply = "invalid color";
                 }
