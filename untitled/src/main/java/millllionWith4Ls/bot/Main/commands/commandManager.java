@@ -45,7 +45,7 @@ public class commandManager extends ListenerAdapter {
                     reply = "```ini\n[" + textOption + "]\n```";
                 }
                 case "grey" -> {
-                    reply = "```brainfuck\n+" + textOption + "\n```";
+                    reply = "```brainfuck\n" + textOption + "\n```";
                 }
                 case "orange" -> {
                     reply = "```css\n[" + textOption + "]\n```";
@@ -73,9 +73,6 @@ public class commandManager extends ListenerAdapter {
                 case "under" -> {
                     reply = "__" + textOption + "__";
                 }
-                case "italbold" -> {
-                    reply = "***" + textOption + "***";
-                }
                 default -> {
                     reply = "invalid modifier";
                 }
@@ -89,7 +86,7 @@ public class commandManager extends ListenerAdapter {
         List<CommandData> commandData = new ArrayList<>();
         OptionData main = new OptionData(OptionType.STRING, "message", "message you want colorized", true);
         OptionData colorOpp = new OptionData(OptionType.STRING, "color", "Color you want the text to be", true).addChoice("yellow","yellow").addChoice("cyan","cyan").addChoice("red","red").addChoice("green","green").addChoice("blue","blue").addChoice("grey","grey").addChoice("orange","orange");
-        OptionData modOpp = new OptionData(OptionType.STRING, "mod", "Option you want the text to be", true).addChoice("bold","bold").addChoice("italic","italic").addChoice("italbold","italbold").addChoice("strike","strike").addChoice("bold","bold");
+        OptionData modOpp = new OptionData(OptionType.STRING, "mod", "Option you want the text to be", true).addChoice("bold","bold").addChoice("italic","italic").addChoice("strike","strike").addChoice("under","under");
         commandData.add(Commands.slash("color","Generate text with a specific color").addOptions(main,colorOpp));
         commandData.add(Commands.slash("mod","Generate text with a specific modifier").addOptions(main,modOpp));
         event.getGuild().updateCommands().addCommands(commandData).queue();
