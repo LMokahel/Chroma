@@ -40,6 +40,9 @@ public class commandManager extends ListenerAdapter {
                 case "red" -> {
                     reply = "```diff\n-" + textOption + "\n```";
                 }
+                case "green" -> {
+                    reply = "```diff\n+" + textOption + "\n```";
+                }
                 default -> {
                     reply = "invalid color";
                 }
@@ -78,7 +81,7 @@ public class commandManager extends ListenerAdapter {
     public void onGuildReady(GuildReadyEvent event) {
         List<CommandData> commandData = new ArrayList<>();
         OptionData main = new OptionData(OptionType.STRING, "message", "message you want colorized", true);
-        OptionData colorOpp = new OptionData(OptionType.STRING, "color", "Color you want the text to be", true).addChoice("yellow","yellow").addChoice("cyan","cyan").addChoice("red","red");
+        OptionData colorOpp = new OptionData(OptionType.STRING, "color", "Color you want the text to be", true).addChoice("yellow","yellow").addChoice("cyan","cyan").addChoice("red","red").addChoice("green","green");
         OptionData modOpp = new OptionData(OptionType.STRING, "mod", "Option you want the text to be", true).addChoice("bold","bold").addChoice("italic","italic").addChoice("italbold","italbold").addChoice("strike","strike").addChoice("bold","bold");
         commandData.add(Commands.slash("color","Generate text with a specific color").addOptions(main,colorOpp));
         commandData.add(Commands.slash("mod","Generate text with a specific modifier").addOptions(main,modOpp));
