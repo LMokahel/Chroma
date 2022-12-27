@@ -21,8 +21,6 @@ import java.util.List;
 public class commandManager extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
-        discordBot CMB;
-        try {CMB = new discordBot();} catch (LoginException e) {throw new RuntimeException(e);}
         String command = event.getName();
         TextChannel textChannel = event.getChannel().asTextChannel();
         if (command.equalsIgnoreCase("color")) {
@@ -42,6 +40,15 @@ public class commandManager extends ListenerAdapter {
                 }
                 case "green" -> {
                     reply = "```diff\n+" + textOption + "\n```";
+                }
+                case "blue" -> {
+                    reply = "```ini\n[" + textOption + "]\n```";
+                }
+                case "grey" -> {
+                    reply = "```brainfuck\n+" + textOption + "\n```";
+                }
+                case "orange" -> {
+                    reply = "```css\n[" + textOption + "]\n```";
                 }
                 default -> {
                     reply = "invalid color";
@@ -70,7 +77,7 @@ public class commandManager extends ListenerAdapter {
                     reply = "***" + textOption + "***";
                 }
                 default -> {
-                    reply = "invalid option";
+                    reply = "invalid modifier";
                 }
             }
             event.reply(reply).queue();
@@ -81,7 +88,7 @@ public class commandManager extends ListenerAdapter {
     public void onGuildReady(GuildReadyEvent event) {
         List<CommandData> commandData = new ArrayList<>();
         OptionData main = new OptionData(OptionType.STRING, "message", "message you want colorized", true);
-        OptionData colorOpp = new OptionData(OptionType.STRING, "color", "Color you want the text to be", true).addChoice("yellow","yellow").addChoice("cyan","cyan").addChoice("red","red").addChoice("green","green");
+        OptionData colorOpp = new OptionData(OptionType.STRING, "color", "Color you want the text to be", true).addChoice("yellow","yellow").addChoice("cyan","cyan").addChoice("red","red").addChoice("green","green").addChoice("blue","blue").addChoice("grey","grey").addChoice("orange","orange");
         OptionData modOpp = new OptionData(OptionType.STRING, "mod", "Option you want the text to be", true).addChoice("bold","bold").addChoice("italic","italic").addChoice("italbold","italbold").addChoice("strike","strike").addChoice("bold","bold");
         commandData.add(Commands.slash("color","Generate text with a specific color").addOptions(main,colorOpp));
         commandData.add(Commands.slash("mod","Generate text with a specific modifier").addOptions(main,modOpp));
