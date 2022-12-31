@@ -1,8 +1,5 @@
 package millllionWith4Ls.bot.Main.commands;
 
-import millllionWith4Ls.bot.Main.discordBot;
-import net.dv8tion.jda.api.OnlineStatus;
-import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -11,9 +8,6 @@ import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-
-import javax.security.auth.login.LoginException;
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,23 +25,26 @@ public class commandManager extends ListenerAdapter{
             OptionMapping modOption = event.getOption("mod");
             String textOption = event.getOption("message").getAsString();
             String mod = modOption.getAsString();
-            event.reply(cleanUp.mod(mod,textOption)).queue();
+            event.reply(cleanUp.modify(textOption,mod)).queue();
         }else if(command.equalsIgnoreCase("modtwo")){
             OptionMapping modOptiontwo = event.getOption("modtwo");
             OptionMapping modOption = event.getOption("mod");
             String textOption = event.getOption("message").getAsString();
             String mod = modOption.getAsString();
             String modtwo = modOptiontwo.getAsString();
-            event.reply(cleanUp.modTwo(modtwo,mod,textOption)).queue();
+            event.reply(cleanUp.modify(textOption,modtwo,mod)).queue();
         }else if(command.equalsIgnoreCase("modthree")){
             OptionMapping modOptiontwo = event.getOption("modtwo");
             OptionMapping modOption = event.getOption("mod");
-            OptionMapping modOptionthree = event.getOption("modthree")
+            OptionMapping modOptionthree = event.getOption("modthree");
             String textOption = event.getOption("message").getAsString();
             String mod = modOption.getAsString();
             String modtwo = modOptiontwo.getAsString();
             String modthree = modOptionthree.getAsString();
-            event.reply(cleanUp.modThree(modthree,modtwo,mod,textOption)).queue();
+            event.reply(cleanUp.modify(textOption,modthree,modtwo,mod)).queue();
+        }else if(command.equalsIgnoreCase("modfour")){
+            String textOption = event.getOption("message").getAsString();
+            event.reply("***__~~" + textOption + "~~__***").queue();
         }
     }
     @Override
@@ -61,10 +58,10 @@ public class commandManager extends ListenerAdapter{
         commandData.add(Commands.slash("color","Generate text with a specific color").addOptions(main,colorOpp));
         commandData.add(Commands.slash("mod","Generate text with a specific modifier").addOptions(main,modOpp));
         commandData.add(Commands.slash("modtwo","Generate text with two specific modifiers").addOptions(main,modOpp,modOppTwo));
-        commandData.add(Commands.slash("modtwo","Generate text with two specific modifiers").addOptions(main,modOpp,modOppTwo,modOppThree));
+        commandData.add(Commands.slash("modthree","Generate text with three specific modifiers").addOptions(main,modOpp,modOppTwo,modOppThree));
+        commandData.add(Commands.slash("modfour","Generate text with four specific modifiers").addOptions(main));
         event.getGuild().updateCommands().addCommands(commandData).queue();
     }
     public static void main(String[] args) {
-
     }
 }
