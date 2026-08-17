@@ -32,8 +32,8 @@ public class EventManagerUtils {
     }
 
     public static String color(String text, List<OptionMapping> colors) {
-        String highlightColor = colors.getLast() == null ? "0" : HighlightColor.fromName(colors.getLast()).getValue();
-        String textColor = TextColor.fromName(colors.getFirst()).getValue();
+        String highlightColor = colors.get(1) == null ? "0" : HighlightColor.fromName(colors.get(1)).getValue();
+        String textColor = TextColor.fromName(colors.get(0)).getValue();
 
         return "```ansi\n\u001b[" + highlightColor + ";" + textColor + "m" + text + "\n```";
     }
@@ -54,7 +54,7 @@ public class EventManagerUtils {
     }
 
     public static String header(String text, List<OptionMapping> size) {
-        String prefix = Size.fromName(size.getFirst()).getValue();
+        String prefix = Size.fromName(size.get(0)).getValue();
 
         return prefix + " " + text;
     }

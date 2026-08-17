@@ -26,12 +26,12 @@ public class EventManager extends ListenerAdapter{
     }
     @Override
     public void onGuildReady(@NotNull GuildReadyEvent event) {
-        OptionData textInput = new OptionData(OptionType.STRING, "text", "", true);
+        OptionData textInput = new OptionData(OptionType.STRING, "text", "Text to be changed", true);
 
         OptionData textColor = new OptionData(OptionType.STRING, "color", "Color you want the text to be", true);
         OptionData highlightColor = new OptionData(OptionType.STRING, "background", "Color you want the highlight to be", false);
 
-        OptionData textModifier = new OptionData(OptionType.STRING, "", "", false);
+        OptionData textModifier = new OptionData(OptionType.STRING, "modifier_zero", "Zeroth modifier", false);
 
         OptionData headerOptionOne = new OptionData(OptionType.STRING, "header_size", "Size of the header", true);
 
