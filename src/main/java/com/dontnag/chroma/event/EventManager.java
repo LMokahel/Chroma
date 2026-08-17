@@ -24,6 +24,7 @@ public class EventManager extends ListenerAdapter{
             case "header" -> EventManagerUtils.execute(event, EventManagerUtils::header);
         }
     }
+
     @Override
     public void onGuildReady(@NotNull GuildReadyEvent event) {
         OptionData textInput = new OptionData(OptionType.STRING, "text", "Text to be changed", true);
@@ -55,19 +56,19 @@ public class EventManager extends ListenerAdapter{
             .updateCommands()
             .addCommands(
                 Commands.slash("color","Colors text").addOptions(
-                    textInput.setDescription("Text to be colored"),
+                    EventManagerUtils.copyOption(textInput).setDescription("Text to be colored"),
                     textColor,
                     highlightColor
                 ),
                 Commands.slash("modify","Modifies text").addOptions(
-                    textInput.setDescription("Text to be modified"),
-                    textModifier.setName("modifier_one").setDescription("First modifier").setRequired(true),
-                    textModifier.setName("modifier_two").setDescription("Second modifier"),
-                    textModifier.setName("modifier_three").setDescription("Third modifier"),
-                    textModifier.setName("modifier_four").setDescription("Fourth modifier")
+                    EventManagerUtils.copyOption(textInput).setDescription("Text to be modified"),
+                    EventManagerUtils.copyOption(textModifier).setName("modifier_one").setDescription("First modifier").setRequired(true),
+                    EventManagerUtils.copyOption(textModifier).setName("modifier_two").setDescription("Second modifier"),
+                    EventManagerUtils.copyOption(textModifier).setName("modifier_three").setDescription("Third modifier"),
+                    EventManagerUtils.copyOption(textModifier).setName("modifier_four").setDescription("Fourth modifier")
                 ),
                 Commands.slash("header", "Formats text into a header").addOptions(
-                    textInput.setDescription("Text to be formatted"),
+                    EventManagerUtils.copyOption(textInput).setDescription("Text to be formatted"),
                     headerOptionOne
                 )
             )

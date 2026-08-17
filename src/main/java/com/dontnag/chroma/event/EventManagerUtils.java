@@ -7,6 +7,7 @@ import com.dontnag.chroma.option.TextColor;
 
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction;
+import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +15,10 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 
 public class EventManagerUtils {
+
+    public static OptionData copyOption(OptionData option) {
+        return new OptionData(option.getType(), option.getName(), option.getDescription(), option.isRequired());
+    }
 
     public static <T extends Enum<T>> String[] getOptions(Class<T> enumClass) {
         return Arrays.stream(enumClass.getEnumConstants())
