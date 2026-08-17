@@ -17,7 +17,8 @@ import java.util.function.BiFunction;
 public class EventManagerUtils {
 
     public static OptionData copyOption(OptionData option) {
-        return new OptionData(option.getType(), option.getName(), option.getDescription(), option.isRequired());
+        return new OptionData(option.getType(), option.getName(), option.getDescription(), option.isRequired())
+            .addChoices(option.getChoices());
     }
 
     public static <T extends Enum<T>> String[] getOptions(Class<T> enumClass) {
