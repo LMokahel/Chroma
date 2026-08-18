@@ -4,9 +4,9 @@ import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 
 public enum Size implements Option {
 
-    SMALL("**"),
-    MEDIUM("*"),
-    LARGE("~~");
+    SMALL("###"),
+    MEDIUM("##"),
+    LARGE("#");
 
     private final String value;
 

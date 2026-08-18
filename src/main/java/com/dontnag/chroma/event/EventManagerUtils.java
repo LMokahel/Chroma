@@ -38,7 +38,7 @@ public class EventManagerUtils {
     }
 
     public static String color(String text, List<OptionMapping> colors) {
-        String highlightColor = colors.get(1) == null ? "0" : HighlightColor.fromName(colors.get(1)).getValue();
+        String highlightColor = colors.size() == 1 ? "0" : HighlightColor.fromName(colors.get(1)).getValue();
         String textColor = TextColor.fromName(colors.get(0)).getValue();
 
         return "```ansi\n\u001b[" + highlightColor + ";" + textColor + "m" + text + "\n```";
